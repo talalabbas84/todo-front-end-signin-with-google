@@ -20,10 +20,10 @@ const App = () => {
     getUser();
   }, []);
   const getUser = async () => {
-    const tokenId = Store.getUserToken();
+    const tokenId = Store.getTokenData();
 
     service
-      .login(tokenId)
+      .login(tokenId && tokenId.tokenId)
       .then(res => {
         Store.setUser(res.data.user);
         Store.set('isAuthenticated', res.data.status);
